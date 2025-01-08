@@ -1,2 +1,3 @@
 idf_component_register(SRCS "walkterm-esp.c"
-                    INCLUDE_DIRS ".")
+                    INCLUDE_DIRS "."
+                    REQUIRES esp_driver_gpio)

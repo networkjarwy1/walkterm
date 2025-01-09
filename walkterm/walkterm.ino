@@ -12,62 +12,37 @@ char charTable[] = {
     '7', '8', '9', '\n', '\r'
 };
 
-#define CS 0
-#define DATA 1
-#define CLK 2
+#define CS 0x0
+#define DATA 0x1
+#define CLK 0x2
 
 TFT_eSPI tft = TFT_eSPI();
 
-char input[];
-int i = 0;
+char input[0x40];
+int i = 0x0;
 
-void setup() {
-  pinMode(26, OUTPUT);
-  pinMode(CS, INPUT_PULLDOWN);
-  pinMode(DATA, INPUT_PULLDOWN);
-  pinMode(CLK, INPUT_PULLDOWN);
-  digitalWrite(26, HIGH);
-
-  tft.init();
-  tft.setRotation(3);
-  tft.fillScreen(TFT_BLACK);
-  tft.setTextColor(TFT_GREEN);
-  tft.setCursor(0, 0);
-}
-
-void loop() {
-  while(digitalRead(CS)){
-    input[i] = getKbInput();
-    if(input[i] == "\n"){
-      i = 0;
-      break;
-    }
-    i++;
-  }
+char decode(uint8_t hex){
+  return charTable[hex];
 }
 
 char getKbInput(){
-  unit8_t currentByte = 0;
-  int bitCount = 0;
+  uint8_t currentByte = 0x0;
+  int bitCount = 0x0;
   
   bool lastCLKstate = LOW;
 
-  while (bitCount < 8) {
+  while (bitCount < 0x8) {
     bool CLKstate = digitalRead(CLK);
 
     if (CLKstate != lastCLKstate) {
       int currentBit = digitalRead(DATA);
-      currentByte = (currentByte << 1) | currentBit;
+      currentByte = (currentByte << 0x1) | currentBit;
       lastCLKstate = !lastCLKstate;
       bitCount++;
     }
   }
 
   return decode(currentByte);
-}
-
-char decode(unit8_t hex){
-  return charTable[hex];
 }
 
 void execCommand(char command[]) {
@@ -77,7 +52,7 @@ void execCommand(char command[]) {
     return;
   }
 
-  if (strcmp(token, "connect") == 0) {
+  if (strcmp(token, "connect") == 0x0) {
     token = strtok(NULL, " ");
     
     if (token == NULL) {
@@ -87,7 +62,7 @@ void execCommand(char command[]) {
     char* device = token;
 
     token = strtok(NULL, " ");
-    if (token == NULL || strcmp(token, "wifi") != 0) {
+    if (token == NULL || strcmp(token, "wifi") != 0x0) {
       tft.println("you forgot to select type of connection \n valid format: connect <device> wifi <SSID> <password>");
       return;
     }
@@ -105,5 +80,32 @@ void execCommand(char command[]) {
       return;
     }
     char* password = token;
+  }
+}
+
+void setup() {
+  pinMode(0x1A, OUTPUT);
+  pinMode(CS, INPUT_PULLDOWN);
+  pinMode(DATA, INPUT_PULLDOWN);
+  pinMode(CLK, INPUT_PULLDOWN);
+  digitalWrite(0x1A, HIGH);
+
+  tft.init();
+  tft.setRotation(0x3);
+  tft.fillScreen(TFT_BLACK);
+  tft.setTextColor(TFT_GREEN);
+  tft.setCursor(0x0, 0x0);
+  tft.println("waiting for input...");
+}
+
+void loop() {
+  while(digitalRead(CS)){
+    input[i] = getKbInput();
+    if(input[i] == '\n'){
+      tft.println(input[i]);
+      i = 0x0;
+      break;
+    }
+    i++;
   }
 }

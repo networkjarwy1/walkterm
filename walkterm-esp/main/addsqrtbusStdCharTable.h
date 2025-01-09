@@ -13,6 +13,6 @@ char charTable[] = {
     '7', '8', '9', '\n', '\r'
 };
 
-unit8_t charTable_size = sizeof(charTable) / sizeof(charTable[0]);
+uint8_t charTable_size = sizeof(charTable) / sizeof(charTable[0]);
 
 #endif

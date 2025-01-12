@@ -1,5 +1,5 @@
-#ifndef __ADDRESS_SQUARED_BUS_CHAR_TABLE__
-#define __ADDRESS_SQUARED_BUS_CHAR_TABLE__
+#ifndef __NSI_CHAR_TABLE__
+#define __NSI_CHAR_TABLE__
 
 
 char charTable[] = {

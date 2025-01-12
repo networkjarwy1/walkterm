@@ -1,8 +1,8 @@
-#ifndef __ADDRESS_SQUARED_BUS__
-#define __ADDRESS_SQUARED_BUS__
+#ifndef __NSI__
+#define __NSI__
 
 #include <stdio.h>
-#include "addsqrtbusStdCharTable.h"
+#include "NSI_char_table.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
@@ -12,7 +12,7 @@
 
 bool CLK_state = 0x0;
 
-void bus_init(){
+void NSI_bus_init(){
     gpio_set_direction(CS, GPIO_MODE_OUTPUT);
     gpio_set_direction(DATA, GPIO_MODE_OUTPUT);
     gpio_set_direction(CLK, GPIO_MODE_OUTPUT);

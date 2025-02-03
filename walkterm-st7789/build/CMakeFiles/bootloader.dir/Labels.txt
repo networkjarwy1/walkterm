@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/CMakeFiles/bootloader
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/CMakeFiles/bootloader.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/CMakeFiles/bootloader-complete.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/networkjarwy/Desktop/projects/walkterm/walkterm-st7789/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

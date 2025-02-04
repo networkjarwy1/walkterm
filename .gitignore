@@ -1,0 +1,5 @@
+.vscode
+walkterm-st7789/.cache
+walkterm-ssd1306/.cache
+walkterm-st7789/build
+walkterm-ssd1306/build

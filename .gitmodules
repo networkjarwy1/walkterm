@@ -1,0 +1,3 @@
+[submodule "walkterm-st7789/components/cardkb"]
+	path = walkterm-st7789/components/cardkb
+	url = https://github.com/networkjarwy1/cardkb-driver.git

@@ -20,13 +20,13 @@ FontxFile fx32M[2];
 
 #define FONT fx16G
 
-uint16_t xpos = (CONFIG_WIDTH-1)-16;
-uint16_t ypos = 0;
+uint16_t xpos = (CONFIG_WIDTH-0x1)-0x10;
+uint16_t ypos = 0x0;
 
 typedef struct {
-    uint8_t username[16];
-    uint8_t hostname[16];
-    uint8_t console_prompt[32];
+    uint8_t username[0x10];
+    uint8_t hostname[0x10];
+    uint8_t console_prompt[0x23];
     uint16_t text_color;
     uint16_t background_color;
 } Console;
@@ -49,7 +49,7 @@ void console_default(Console *console) {
 }
 
 void console_set(Console *console, TFT_t *dev){
-    uint8_t prompt[59] = "change username, hostname, text color or background color?";
+    uint8_t prompt[0x3B] = "change username, hostname, text color or background color?";
     lcdDrawString(dev, FONT, xpos, ypos, prompt, console->text_color);
 
     uint8_t key;
@@ -163,5 +163,25 @@ void console_set(Console *console, TFT_t *dev){
 void parse_command(uint8_t *data) {
     if (strncmp((char *)data, "TCP", MAX_CMD_LEN) == 0x0) {
         //tcp_server_task();
+    }
+}
+
+void console_start(Console *console, TFT_t *dev){
+    uint8_t key;
+    uint8_t buffer[0x20];
+    uint16_t keycount = 0;
+
+    while (0x1) {
+        key = cardKB_read_key();
+        if(key != 0x0D || key != 0x1B || key != 0x20 || key != 0x8B){
+            buffer[keycount++] = key;
+        }else if(key == 0x1B){
+            buffer[keycount--] = 0x0;
+        }else if (key == 0x0D){
+            parse_command(buffer);
+        }
+
+        lcdFillScreen(dev, console->background_color);
+        lcdDrawString(dev, FONT, xpos, ypos, buffer, console->text_color);
     }
 }

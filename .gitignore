@@ -1,5 +1,6 @@
-.vscode
 walkterm-st7789/.cache
 walkterm-ssd1306/.cache
 walkterm-st7789/build
 walkterm-ssd1306/build
+walkterm-st7789/.zed
+walkterm-ssd1306/.zed

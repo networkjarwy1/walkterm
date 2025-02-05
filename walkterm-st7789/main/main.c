@@ -3,6 +3,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <inttypes.h>
+#include <sys/param.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <unistd.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -11,19 +15,32 @@
 #include "esp_system.h"
 #include "esp_vfs.h"
 #include "esp_spiffs.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+#include "esp_wifi.h"
+#include "nvs_flash.h"
 
 #include "st7789.h"
 #include "fontx.h"
+
+#include "cardkb.h"
+#include "console.h"
+//#include "tcpServer.h"
+//#include "wifi.h"
 
 #define INTERVAL 400
 #define WAIT vTaskDelay(INTERVAL)
 
 #define DEFAULT_FONT fx16G
 #define TERMINAL_PROMPT "networkjarwy@esp32-$ "
+#define TEXT_COLOR GREEN
 
 static const char *TAG = "ST7789";
 
 TFT_t dev;
+
+uint8_t cardkb_buffer[128];
+uint16_t buffer_count = 0;
 
 void traceHeap() {
 	static uint32_t _free_heap_size = 0;
@@ -43,8 +60,7 @@ void traceHeap() {
 #endif
 }
 
-void ST7789(void *pvParameters)
-{
+void ST7789(void *pvParameters){
 	// set font file
 	FontxFile fx16G[2];
 	FontxFile fx24G[2];
@@ -68,24 +84,32 @@ void ST7789(void *pvParameters)
 	while(1) {
 		traceHeap();
 
-		uint16_t color = GREEN;
-		uint8_t ascii[40];
+		uint8_t ascii[64];
 		lcdFillScreen(&dev, BLACK);
 		uint16_t xpos = (CONFIG_WIDTH-1)-16;
 		uint16_t ypos = 0;
 		lcdSetFontDirection(&dev, 1);
 
 		strcpy((char *)ascii, TERMINAL_PROMPT);
-		lcdDrawString(&dev, DEFAULT_FONT, xpos, ypos, ascii, color);
+		lcdDrawString(&dev, DEFAULT_FONT, xpos, ypos, ascii, TEXT_COLOR);
 
 
 		lcdDrawFinish(&dev);
 		lcdSetFontDirection(&dev, 1);
 
-		while (1) {
-		  vTaskDelay(400);
-		}
+		//tcp_server_task(&dev);
 
+		while (1) {
+            uint8_t key = cardKB_read_key();
+            if(key == 0x0D){
+                return;
+            }
+            if (key) {
+                lcdFillScreen(&dev, BLACK);
+                lcdDrawChar(&dev, DEFAULT_FONT, xpos, ypos, key, TEXT_COLOR);
+            }
+            vTaskDelay(pdMS_TO_TICKS(2));
+            }
 	}
 }
 
@@ -147,8 +171,10 @@ esp_err_t mountSPIFFS(char * path, char * label, int max_files) {
 }
 
 
-void app_main(void)
-{
+void app_main(void){
+    Console console;
+    console_default(&console);
+
 	ESP_LOGI(TAG, "Initializing SPIFFS");
 	// Maximum files that could be open at the same time is 7.
 	ESP_ERROR_CHECK(mountSPIFFS("/fonts", "storage1", 7));
@@ -156,6 +182,12 @@ void app_main(void)
 
 	spi_master_init(&dev, CONFIG_MOSI_GPIO, CONFIG_SCLK_GPIO, CONFIG_CS_GPIO, CONFIG_DC_GPIO, CONFIG_RESET_GPIO, CONFIG_BL_GPIO);
 	lcdInit(&dev, CONFIG_WIDTH, CONFIG_HEIGHT, CONFIG_OFFSETX, CONFIG_OFFSETY);
+
+	cardKB_init();
+
+	nvs_flash_init();
+    //wifi_init();
+    ESP_ERROR_CHECK(esp_event_loop_create_default());
 
 	xTaskCreate(ST7789, "ST7789", 1024*6, NULL, 2, NULL);
 }

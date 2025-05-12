@@ -1,0 +1,5 @@
+**/.cache
+**/.zed
+**/build
+**/sdkconfig.old
+**/sdkconfig

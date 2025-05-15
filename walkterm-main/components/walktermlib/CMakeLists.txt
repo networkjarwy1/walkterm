@@ -1,0 +1,11 @@
+idf_component_register(SRCS "walktermlib.c"
+                    INCLUDE_DIRS "."
+                    REQUIRES cardkb
+                    REQUIRES vfs
+                    REQUIRES spiffs
+                    REQUIRES esp_event
+                    REQUIRES esp_netif
+                    REQUIRES esp_wifi
+                    REQUIRES nvs_flash
+                    REQUIRES driver
+                    REQUIRES st7789)

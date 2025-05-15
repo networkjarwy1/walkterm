@@ -1,0 +1,15 @@
+menu "Walkterm configuration"
+
+choice
+    prompt "Select display driver"
+    default WALKTERM_ST7789
+
+config WALKTERM_ST7789
+    bool "ST7789 display driver"
+
+config WALKTERM_SSD1306
+    bool "SSD1306 display driver"
+
+endchoice
+
+endmenu

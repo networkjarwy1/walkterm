@@ -1,0 +1,7 @@
+
+[submodule "walkterm-main/components/cardkb"]
+	path = walkterm-main/components/cardkb
+	url = https://github.com/networkjarwy1/cardkb-driver.git
+[submodule "walkterm-main/components/walktermlib"]
+	path = walkterm-main/components/walktermlib
+	url = git@github.com:networkjarwy1/walktermlib.git

@@ -1,0 +1,152 @@
+ESC             0x1B
+ESC + SYM       0x1B
+ESC + SHIFT     0x1B
+ESC + FN        0x80
+TAB             0x09
+TAB + SYM       0x09
+TAB + SHIFT     0x09
+TAB + FN        0x8C
+1 !             0x31
+2 @             0x32
+3 #             0x33
+4 $             0x34
+5 %             0x35
+6 ^             0x36
+7 &             0x37
+8 *             0x38
+9 (             0x39
+0 )             0x30
+1 + SYM         0x21
+2 + SYM         0x22
+3 + SYM         0x23
+4 + SYM         0x24
+5 + SYM         0x25
+6 + SYM         0x26
+7 + SYM         0x27
+8 + SYM         0x28
+9 + SYM         0x29
+0 + SYM         0x20
+1 + SHIFT       0x31
+2 + SHIFT       0x32
+3 + SHIFT       0x33
+4 + SHIFT       0x34
+5 + SHIFT       0x35
+6 + SHIFT       0x36
+7 + SHIFT       0x37
+8 + SHIFT       0x38
+9 + SHIFT       0x39
+0 + SHIFT       0x30
+1 + FN          0x81
+2 + FN          0x82
+3 + FN          0x83
+4 + FN          0x84
+5 + FN          0x85
+6 + FN          0x86
+7 + FN          0x87
+8 + FN          0x88
+9 + FN          0x89
+0 + FN          0x80
+a               0x61
+b               0x62
+c               0x63
+d               0x64
+e               0x65
+f               0x66
+g               0x67
+h               0x68
+i               0x69
+j               0x6A
+k               0x6B
+l               0x6C
+m               0x6D
+n               0x6E
+o               0x6F
+p               0x70
+q               0x71
+r               0x72
+s               0x73
+t               0x74
+u               0x75
+v               0x76
+w               0x77
+x               0x78
+y               0x79
+z               0x7A
+a + SYM ;       0x3B
+b + SYM         NULL
+c + SYM         NULL
+d + SYM ´       0x60
+e + SYM [       0x5B
+f + SYM +       0x2B
+g + SYM -       0x2D
+h + SYM -       0x5F
+i + SYM ~       0x7E
+j + SYM =       0x3D
+k + SYM ?       0x3F
+l + SYM         NULL
+m + SYM         NULL
+n + SYM         NULL
+o + SYM '       0x27
+p + SYM "       0x22
+q + SYM {       0x7B
+r + SYM ]       0x5D
+s + SYM :       0x3A
+t + SYM /       0x2F
+u + SYM |       0x7C
+v + SYM         NULL
+w + SYM }       0x7D
+x + SYM         NULL
+y + SYM \       0x5C
+z + SYM         NULL
+a + SHIFT       0x41
+b + SHIFT       0x42
+c + SHIFT       0x43
+d + SHIFT       0x44
+e + SHIFT       0x45
+f + SHIFT       0x46
+g + SHIFT       0x47
+h + SHIFT       0x48
+i + SHIFT       0x49
+j + SHIFT       0x4A
+k + SHIFT       0x4B
+l + SHIFT       0x4C
+m + SHIFT       0x4D
+n + SHIFT       0x4E
+o + SHIFT       0x4F
+p + SHIFT       0x50
+q + SHIFT       0x51
+r + SHIFT       0x52
+s + SHIFT       0x53
+t + SHIFT       0x54
+u + SHIFT       0x55
+v + SHIFT       0x56
+w + SHIFT       0x57
+x + SHIFT       0x58
+y + SHIFT       0x59
+z + SHIFT       0x5A
+a + FN          0x9A
+b + FN          0x42
+c + FN          0x43
+d + FN          0x8F
+e + FN          0x9D
+f + FN          0x
+g + FN          0x
+h + FN          0x
+i + FN          0x
+j + FN          0x
+k + FN          0x
+l + FN          0x
+m + FN          0x
+n + FN          0x
+o + FN          0x
+p + FN          0x
+q + FN          0x
+r + FN          0x
+s + FN          0x
+t + FN          0x
+u + FN          0x
+v + FN          0x
+w + FN          0x
+x + FN          0x
+y + FN          0x
+z + FN          0x
